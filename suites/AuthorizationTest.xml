@@ -2,11 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="checkMail" parallel="false">
-    <test name="mailTest">
+    <test name="AuthorizationTest">
         <classes>
             <class name="com.gmail.tests.users.AuthorizationTest" />
-            <class name="com.gmail.tests.messages.SentMessageTest" />
-            <class name="com.gmail.tests.messages.DraftMessageTest" />
         </classes>
     </test>
 </suite>

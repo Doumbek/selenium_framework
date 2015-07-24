@@ -66,9 +66,17 @@
 
 ## 4. Запуск тестов
 
+Запуск тестов реализован через xml файлы. 
+
 Из проекта:
 
 >mvn clean test
+
+Для использования файла из другой категории, используем параметры * -DxmlPath* и *-DxmlFile*:
+
+>mvn clean test -DxmlPath="path/to/dir/with/xml" -DxmlFile=fileName.xml
+
+Файлы ожидаются в категории *suite*. По-умолчанию запускается *allTest.xml'. 
 
 Для выбора браузера передаем параметр *-Dbrowser*:
 

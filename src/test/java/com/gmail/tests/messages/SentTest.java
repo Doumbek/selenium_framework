@@ -3,8 +3,8 @@ package com.gmail.tests.messages;
 import com.gmail.tests.BaseTest;
 import com.gmail.cases.messages.MessageCases;
 import com.gmail.cases.users.UserCases;
-import com.gmail.pages.main.DraftPage;
 import com.gmail.pages.main.InboxPage;
+import com.gmail.pages.main.SentPage;
 import com.gmail.pages.users.LoginPage;
 import com.gmail.providers.messages.MessagesDataProvider;
 import com.gmail.test_objects.messages.TestMessage;
@@ -14,47 +14,42 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class DraftMessageTest extends BaseTest {
+public class SentTest extends BaseTest {
 
 	private LoginPage loginPage;
 	private InboxPage inboxPage;
-	private DraftPage draftPage;
+	private SentPage sentPage;
 
 	@BeforeMethod
 	@Override
 	public void setUp() {
 		super.setUp();
 		inboxPage = new InboxPage();
-		draftPage = new DraftPage();
+		sentPage = new SentPage();
 		loginPage = new LoginPage();
 	}
 
 	@Test(dataProvider = "forCreationData",
 			dataProviderClass = MessagesDataProvider.class)
-	public void shouldCreateDraft(TestUser user, TestMessage message){
+	public void shouldSendEmail(TestUser user, TestMessage message){
 
 		loginPage.open();
 
 		UserCases.login(loginPage, user);
 
-		int numberOfDraftsBefore = inboxPage.getNavigationPanel().getNumberOfDrafts();
+		MessageCases.sendMessage(inboxPage, message);
 
-		MessageCases.createDraft(inboxPage, message);
+		assertTrue(inboxPage.getAlertPanel().isAlertContainsText("Письмо отправлено"));
 
-		assertTrue(
-				inboxPage.getNavigationPanel().isNumberOfDraftsIncrease(numberOfDraftsBefore + 1),
-				"Number of drafts must be incremented by 1!"
-		);
-
-		inboxPage.getNavigationPanel().clickDraftLink();
+		inboxPage.getNavigationPanel().clickSentLink();
 
 		assertTrue(
-				draftPage.getMessagesPanel().isSubjectContains(message.getSubject()),
+				sentPage.getMessagesPanel().isSubjectContains(message.getSubject()),
 				"The firs part of draft must be message's subject!"
 		);
 
 		assertTrue(
-				draftPage.getMessagesPanel().isBodyContains(message.getBody()),
+				sentPage.getMessagesPanel().isBodyContains(message.getBody()),
 				"The second part of draft must contain message's body!"
 		);
 
@@ -70,15 +65,15 @@ public class DraftMessageTest extends BaseTest {
 
 		MessageCases.sendMessage(inboxPage, message);
 
-		inboxPage.getNavigationPanel().clickDraftLink();
+		inboxPage.getNavigationPanel().clickSentLink();
 
-		inboxPage.getNavigationPanel().isDraftPageActive();
+		inboxPage.getNavigationPanel().isSentPageActive();
 
-		MessageCases.deleteAllDraft(draftPage);
+		MessageCases.deleteAllSentMessages(sentPage);
 
 		assertTrue(
-				draftPage.getMessagesPanel().isMessageInfoContains("Нет сохраненных черновиков"),
-				"Expected no records in drafts!"
+				sentPage.getMessagesPanel().isMessageInfoContains("Нет отправленных писем"),
+				"Expected no records in sent!"
 		);
 
 	}

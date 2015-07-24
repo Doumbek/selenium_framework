@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="checkMail" parallel="false">
+    <test name="allTest">
+        <classes>
+            <class name="com.gmail.tests.users.AuthorizationTest" />
+            <class name="com.gmail.tests.messages.SentTest" />
+            <class name="com.gmail.tests.messages.DraftTest" />
+        </classes>
+    </test>
+</suite>
