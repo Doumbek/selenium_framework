@@ -8,15 +8,12 @@ public class MessagesDataProvider {
 
 	private static TestUser testUser = new TestUser("yakush.properties");
 	private static TestMessage firstTestMessage = new TestMessage("firstMessage.properties");
-	private static TestMessage secondTestMessage = new TestMessage("secondMessage.properties");
 
 	@DataProvider
 	public static Object[][] forCreationData() {
 
 		return  new Object[][] {
-				{testUser, firstTestMessage},
-				{testUser, secondTestMessage}
-		};
+				{testUser, firstTestMessage}};
 	}
 
 	@DataProvider

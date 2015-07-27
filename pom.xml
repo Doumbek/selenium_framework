@@ -32,6 +32,16 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -58,8 +68,9 @@
                         <webdriver.chrome.driver>${basedir}/src/main/resources/drivers/chromedriver.exe</webdriver.chrome.driver>
                         <users.properties.path>${basedir}/src/test/resources/data/users/</users.properties.path>
                         <messages.properties.path>${basedir}/src/test/resources/data/messages/</messages.properties.path>
-                        <config.properties.path>${basedir}/src/test/resources/config/</config.properties.path>
-                    </systemPropertyVariables>
+                        <config.properties.path>${basedir}/src/test/resources/test_config/</config.properties.path>
+                        <log4j.configurationFile>log_config/log4j2.xml</log4j.configurationFile>
+                     </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>

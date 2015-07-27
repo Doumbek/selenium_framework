@@ -1,5 +1,8 @@
 package com.gmail.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -8,6 +11,8 @@ import java.util.Properties;
  * Управляет работой с properties
  */
 public class PropertiesManager {
+
+	private static final Logger logger = LogManager.getLogger(PropertiesManager.class);
 
 	/**
 	 * Загружает properties
@@ -31,6 +36,8 @@ public class PropertiesManager {
 
 		} catch (IOException e) {
 
+			logger.error("Have problems with loading properties!");
+
 			e.printStackTrace();
 
 		} finally {
@@ -38,9 +45,12 @@ public class PropertiesManager {
 			if (reader != null) {
 
 				try {
+
 					reader.close();
 
 				} catch (IOException e) {
+
+					logger.error("Have problems with closing properties reader!");
 
 					e.printStackTrace();
 

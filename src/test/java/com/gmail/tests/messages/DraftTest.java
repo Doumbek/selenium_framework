@@ -33,6 +33,8 @@ public class DraftTest extends BaseTest {
 			dataProviderClass = MessagesDataProvider.class)
 	public void shouldCreateDraft(TestUser user, TestMessage message){
 
+		logger.info("Check creation of draft message ");
+
 		loginPage.open();
 
 		UserCases.login(loginPage, user);
@@ -63,6 +65,8 @@ public class DraftTest extends BaseTest {
 	@Test(dataProvider = "forDeletingData",
 			dataProviderClass = MessagesDataProvider.class)
 	public void shouldDeleteAllSentMessages(TestUser user, TestMessage message) {
+
+		logger.info("Check deletion of all draft messages");
 
 		loginPage.open();
 

@@ -11,7 +11,6 @@ public class AuthorizationDataProvider {
 	public static Object[][] loginData() {
 
 		return  new Object[][] {
-				{testUser},
 				{testUser}
 		};
 	}

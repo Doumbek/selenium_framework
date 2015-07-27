@@ -9,6 +9,7 @@
 2. [TestNG](http://testng.org/doc/index.html)
 3. [Maven](http://maven.apache.org/guides/)
 4. [Java](http://www.oracle.com/technetwork/java/index.html)
+5. [Log4j2](https://logging.apache.org/log4j/2.x/index.html)
 
 ## 2. Структура
 
@@ -36,6 +37,7 @@
 ### 2.2 src/main/resources/
 
 * drivers - xранит драйвера для запуска браузеров (chromedriver, iedriver)
+* log_config - хранит конфигурации для логирования
 
 ### 2.3 src/test/java/
 
@@ -48,7 +50,7 @@
 
 Хранит конфигурацию и тестовые данные.
 
-* сonfig - хранит файлы конфигурации тестов (url).
+* test_сonfig - хранит файлы конфигурации тестов (url).
 * data - хранит файлы с тестовыми данными (пользователи, варианты писем).
 
 ### 2.5 suites
@@ -60,7 +62,7 @@
 
 В плагине *\<surfire\>*, в блоке *\<systemPropertyVariables\>* описаны динамические параметры, которыми есть возможность управлять через консольный запуск (браузер, категории с тестовыми данными и т.д).
 
-### 3.2 config/someConfig.properties
+### 3.2 test_config/someConfig.properties
 
 Описаны основные постоянные параметры, используемые в тестах (url, сервера и т.д).
 
@@ -95,3 +97,9 @@
 Ожидается наличие драйверов в *src/main/resources/drivers/*. Можно при запуске передать ключ, указав путь к драйверу. Например
  
 >mvn clean test -Dwebdriver.chrome.driver="path/to/driver.exe"
+
+## 6. Логирование
+
+По-умолчанию используем *log4j2.xml* файл конфиграции в директории *log_config*. Для использования другого файла, передаем параметр *-Dlog4j.configurationFile*:
+
+>mvn clean test -Dlog4j.configurationFile="log_config/otherFile.xml"

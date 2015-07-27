@@ -33,6 +33,8 @@ public class SentTest extends BaseTest {
 			dataProviderClass = MessagesDataProvider.class)
 	public void shouldSendEmail(TestUser user, TestMessage message){
 
+		logger.info("Check sending message");
+
 		loginPage.open();
 
 		UserCases.login(loginPage, user);
@@ -58,6 +60,8 @@ public class SentTest extends BaseTest {
 	@Test(dataProvider = "forDeletingData",
 			dataProviderClass = MessagesDataProvider.class)
 	public void shouldDeleteAllSentMessages(TestUser user, TestMessage message) {
+
+		logger.info("Check deletion of all sent messages");
 
 		loginPage.open();
 
