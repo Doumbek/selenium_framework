@@ -6,7 +6,9 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.*;
+import org.uncommons.reportng.HTMLReporter;
 
+@Listeners({HTMLReporter.class})
 abstract public class BaseTest {
 
 	protected Logger logger = LogManager.getLogger(this.getClass());

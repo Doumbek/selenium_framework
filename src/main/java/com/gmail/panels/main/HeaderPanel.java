@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class HeaderPanel extends BasePanel {
 
-	@FindBy(xpath = "//div[@class= 'gb_ha gb_s gb_0c gb_r']/a")
+	@FindBy(xpath = "//a[@class='gb_ca gb_l gb_r gb_h']")
 	private WebElement accountLink;
 
 	public HeaderPanel() {

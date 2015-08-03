@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
+<Configuration packages="com.gmail.utils.appenders">
     <Appenders>
+        <TestNgReportAppender name="TestNg">
+            <PatternLayout pattern="[%t] %d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
+        </TestNgReportAppender>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="[%t] %d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
         <Root level="info">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="TestNg"/>
         </Root>
+        <Logger name="com.gmail.utils" level="error">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TestNg"/>
+        </Logger>
     </Loggers>
 </Configuration>
