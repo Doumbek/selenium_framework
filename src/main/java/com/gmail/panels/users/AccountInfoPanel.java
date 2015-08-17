@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class AccountInfoPanel extends BasePanel {
 
-	@FindBy(linkText = "Выйти")
+	@FindBy(xpath = ".//a[text() = 'Выйти']")
 	private WebElement logoutButton;
 
 	public AccountInfoPanel() {

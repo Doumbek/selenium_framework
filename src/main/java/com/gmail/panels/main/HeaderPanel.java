@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class HeaderPanel extends BasePanel {
 
-	@FindBy(xpath = "//a[@class='gb_ca gb_l gb_r gb_h']")
+	@FindBy(xpath = ".//a[contains(@href, 'https://accounts.google.com/SignOutOptions')]")
 	private WebElement accountLink;
 
 	public HeaderPanel() {
