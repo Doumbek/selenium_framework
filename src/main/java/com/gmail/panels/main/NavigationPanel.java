@@ -31,7 +31,7 @@ public class NavigationPanel extends BasePanel {
 	}
 
 	public void clickNewLetterButton(){
-		newLetterButton.click();
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(newLetterButton)).click();
 	}
 
 	public void clickSentLink() {

@@ -64,7 +64,7 @@ public class DraftTest extends BaseTest {
 
 	@Test(dataProvider = "forDeletingData",
 			dataProviderClass = MessagesDataProvider.class)
-	public void shouldDeleteAllSentMessages(TestUser user, TestMessage message) {
+	public void shouldDeleteAllDraftMessages(TestUser user, TestMessage message) {
 
 		logger.info("Check deletion of all draft messages");
 

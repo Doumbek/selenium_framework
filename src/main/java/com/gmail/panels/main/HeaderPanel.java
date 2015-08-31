@@ -5,6 +5,8 @@ import com.gmail.panels.BasePanel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Описывает блок header
@@ -19,11 +21,14 @@ public class HeaderPanel extends BasePanel {
 	}
 
 	public boolean isAccountLinkPresented() {
-		return accountLink.isDisplayed();
+
+		return (new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOf(accountLink)).isDisplayed();
+
 	}
 
 	public void clickAccountLink() {
-		accountLink.click();
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(accountLink)).click();
+//		accountLink.click();
 	}
 
 }
