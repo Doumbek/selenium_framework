@@ -10,12 +10,10 @@ public class Config {
 	private static Config config;
 	private String config_dir = System.getProperty("config.properties.path");
 
-	private String baseUrl;
+	Properties properties;
 
 	private Config() {
-		Properties properties = PropertiesManager.loadProperties(config_dir, "baseConfig.properties");
-		this.baseUrl = properties.getProperty("base.url");
-
+		 properties = PropertiesManager.loadProperties(config_dir, "baseConfig.properties");
 	}
 
 	public static Config getInstance() {
@@ -26,6 +24,10 @@ public class Config {
 	}
 
 	public String getBaseUrl() {
-		return baseUrl;
+		return properties.getProperty("base.url");
+	}
+
+	public String getHubUrl() {
+		return properties.getProperty("hub.url");
 	}
 }

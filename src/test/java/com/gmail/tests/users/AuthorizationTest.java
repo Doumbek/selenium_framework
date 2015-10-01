@@ -39,6 +39,9 @@ public class AuthorizationTest extends BaseTest {
 
 		UserCases.login(loginPage, user);
 
+		System.out.print("Get page title through JavascriptExecutor: ");
+		System.out.println(inboxPage.getTitle());
+
 		assertTrue(
 				inboxPage.getHeaderPanel().isAccountLinkPresented(),
 				"Account link for authorized user must be presented!"

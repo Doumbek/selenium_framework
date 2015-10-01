@@ -12,6 +12,15 @@
         <xmlPath>suites</xmlPath>
         <xmlFile>allTest.xml</xmlFile>
 
+        <browser>chrome</browser>
+        <isMaximizeWindow>true</isMaximizeWindow>
+        <isRemote>false</isRemote>
+        <webdriver.chrome.driver>${basedir}/src/main/resources/drivers/chromedriver.exe</webdriver.chrome.driver>
+        <users.properties.path>${basedir}/src/test/resources/data/users/</users.properties.path>
+        <messages.properties.path>${basedir}/src/test/resources/data/messages/</messages.properties.path>
+        <config.properties.path>${basedir}/src/test/resources/test_config/</config.properties.path>
+        <log4j.configurationFile>log_config/log4j2.xml</log4j.configurationFile>
+
         <selenium.version>2.47.1</selenium.version>
         <testng.version>6.9.4</testng.version>
         <maven.compiler.version>3.3</maven.compiler.version>
@@ -75,13 +84,13 @@
                         <suiteXmlFile>${xmlPath}/${xmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
-                        <browser>chrome</browser>
-                        <isMaximizeWindow>true</isMaximizeWindow>
-                        <webdriver.chrome.driver>${basedir}/src/main/resources/drivers/chromedriver.exe</webdriver.chrome.driver>
-                        <users.properties.path>${basedir}/src/test/resources/data/users/</users.properties.path>
-                        <messages.properties.path>${basedir}/src/test/resources/data/messages/</messages.properties.path>
-                        <config.properties.path>${basedir}/src/test/resources/test_config/</config.properties.path>
-                        <log4j.configurationFile>log_config/log4j2.xml</log4j.configurationFile>
+                        <browser>${browser}</browser>
+                        <isMaximizeWindow>${isMaximizeWindow}}</isMaximizeWindow>
+                        <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+                        <users.properties.path>${users.properties.path}</users.properties.path>
+                        <messages.properties.path>${messages.properties.path}</messages.properties.path>
+                        <config.properties.path>${config.properties.path}</config.properties.path>
+                        <log4j.configurationFile>${log4j.configurationFile}</log4j.configurationFile>
                      </systemPropertyVariables>
                 </configuration>
             </plugin>

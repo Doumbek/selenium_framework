@@ -14,16 +14,11 @@ abstract public class BaseTest {
 	protected Logger logger = LogManager.getLogger(this.getClass());
 
 	protected WebDriver driver;
-	protected Actions actions;
-
-
 
 	@BeforeMethod()
 	public void setUp() {
 
 		driver = DriverManager.getInstance();
-
-		actions = new Actions(driver);
 
 	}
 

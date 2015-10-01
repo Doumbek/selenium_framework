@@ -5,6 +5,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import javax.xml.bind.SchemaOutputResolver;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -12,8 +18,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class DriverManager {
 
+	private final static String URL = Config.getInstance().getHubUrl();
+
 	private static String browser = System.getProperty("browser");
 	private static boolean isMaximizeWindow = Boolean.valueOf(System.getProperty("isMaximizeWindow"));
+	private static boolean isRemote = Boolean.valueOf(System.getProperty("isRemote"));
 
 	private static WebDriver driver;
 
@@ -28,6 +37,8 @@ public class DriverManager {
 		if(driver == null || hasQuite()) {
 
 			driver = initDriver();
+
+			manageDriver(driver);
 
 		}
 
@@ -51,41 +62,112 @@ public class DriverManager {
 	 * Устанавливает неявные ожидания
 	 * @return driver
 	 */
-	private static WebDriver initDriver() {
+	private static WebDriver initDriver(){
 
 		WebDriver driver;
 
-		switch (browser) {
+		if(!isRemote) {
 
-			case "firefox":
-				driver = new FirefoxDriver();
-				break;
+			switch (browser) {
 
-			case "ie":
-				driver = new InternetExplorerDriver();
-				break;
+				case "firefox":
+					driver = new FirefoxDriver();
+					break;
 
-			case "html":
-				driver = new HtmlUnitDriver();
-				break;
+				case "ie":
+					driver = new InternetExplorerDriver();
+					break;
 
-			case "chrome":
-			default:
-				driver = new ChromeDriver();
-				break;
+				case "html":
+					driver = new HtmlUnitDriver();
+					break;
+
+				case "chrome":
+				default:
+					driver = new ChromeDriver();
+					break;
+
+			}
+
+		} else {
+
+			driver = setRemoteDriver();
 
 		}
 
+		return driver;
+
+	}
+
+	/**
+	 * Настраиваем драйвер
+	 * @param driver WebDriver
+	 */
+	private static void manageDriver(WebDriver driver) {
+
 		if(isMaximizeWindow) {
-
 			driver.manage().window().maximize();
-
 		}
 
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
+	}
+
+	/**
+	 * Возвращаем драйвер для удаленного запуска
+	 * @return RemoteWebDriver
+	 */
+	private static WebDriver setRemoteDriver(){
+
+		DesiredCapabilities capabilities;
+		WebDriver driver = null;
+
+		capabilities = setCapabilities();
+
+		try {
+
+			driver = new RemoteWebDriver(new URL(URL), capabilities);
+
+		} catch (MalformedURLException e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
 		return driver;
 
+	}
+
+	/**
+	 * Устанавливает предпочтения в зависимости от указаного браузера
+	 * @return capabilities
+	 */
+	private static DesiredCapabilities setCapabilities() {
+
+		DesiredCapabilities capabilities;
+
+		switch (browser) {
+
+			case "firefox":
+				capabilities = DesiredCapabilities.firefox();
+				break;
+
+			case "ie":
+				capabilities = DesiredCapabilities.internetExplorer();
+				break;
+
+			case "html":
+				capabilities = DesiredCapabilities.htmlUnit();
+				break;
+
+			case "chrome":
+			default:
+				capabilities = DesiredCapabilities.chrome();
+				break;
+
+		}
+
+		return capabilities;
 	}
 
 	/**
