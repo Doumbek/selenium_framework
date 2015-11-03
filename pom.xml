@@ -16,9 +16,9 @@
         <isMaximizeWindow>true</isMaximizeWindow>
         <isRemote>false</isRemote>
         <webdriver.chrome.driver>${basedir}/src/main/resources/drivers/chromedriver.exe</webdriver.chrome.driver>
-        <users.properties.path>${basedir}/src/test/resources/data/users/</users.properties.path>
-        <messages.properties.path>${basedir}/src/test/resources/data/messages/</messages.properties.path>
-        <config.properties.path>${basedir}/src/test/resources/test_config/</config.properties.path>
+        <users.file.path>src/test/resources/data/users/</users.file.path>
+        <messages.properties.path>src/test/resources/data/messages/</messages.properties.path>
+        <config.properties.path>src/test/resources/test_config/</config.properties.path>
         <log4j.configurationFile>log_config/log4j2.xml</log4j.configurationFile>
 
         <selenium.version>2.47.1</selenium.version>
@@ -87,7 +87,7 @@
                         <browser>${browser}</browser>
                         <isMaximizeWindow>${isMaximizeWindow}}</isMaximizeWindow>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-                        <users.properties.path>${users.properties.path}</users.properties.path>
+                        <users.file.path>${users.file.path}</users.file.path>
                         <messages.properties.path>${messages.properties.path}</messages.properties.path>
                         <config.properties.path>${config.properties.path}</config.properties.path>
                         <log4j.configurationFile>${log4j.configurationFile}</log4j.configurationFile>

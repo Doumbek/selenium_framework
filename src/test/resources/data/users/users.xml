@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+<user name="Yakush">
+    <login>test.selenium.yakush@gmail.com</login>
+    <password>testyakush></password>
+</user>
+<user name="Bart">
+    <login>test@test.com</login>
+    <password>123456</password>
+</user>
+</users>
