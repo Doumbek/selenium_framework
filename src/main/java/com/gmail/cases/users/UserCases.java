@@ -3,6 +3,7 @@ package com.gmail.cases.users;
 import com.gmail.pages.main.BaseMainPage;
 import com.gmail.pages.users.LoginPage;
 import com.gmail.test_objects.users.TestUser;
+import com.gmail.utils.ScreenshotsMaker;
 
 public class UserCases {
 
@@ -14,8 +15,14 @@ public class UserCases {
 	public static void login(LoginPage page, TestUser user) {
 
 		page.getLoginPanel().setLogin(user.getLogin());
+
+//		ScreenshotsMaker.makeScreenshotWithHighlight(page.getLoginPanel().getLoginInput());
+
 		page.getLoginPanel().clickNextButton();
 		page.getPasswordPanel().setPassword(user.getPassword());
+
+//		ScreenshotsMaker.makeScreenshotWithHighlight(page.getPasswordPanel().getPasswordInput());
+
 		page.getPasswordPanel().clickEnterButton();
 
 	}

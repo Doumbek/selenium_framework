@@ -6,6 +6,8 @@ import com.gmail.pages.main.InboxPage;
 import com.gmail.pages.users.LoginPage;
 import com.gmail.providers.users.AuthorizationDataProvider;
 import com.gmail.test_objects.users.TestUser;
+import com.gmail.utils.ScreenshotsMaker;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeMethod;
@@ -34,23 +36,30 @@ public class AuthorizationTest extends BaseTest {
 	public void shouldLogin(TestUser user){
 
 		logger.info("Check login user with valid data");
-
+		logger.info("User open main page");
 		loginPage.open();
 
+		ScreenshotsMaker.makeScreenshot();
+
+		logger.info("User try to login");
 		UserCases.login(loginPage, user);
 
-		System.out.print("Get page title through JavascriptExecutor: ");
+		logger.info("User get page title through JavascriptExecutor");
 		System.out.println(inboxPage.getTitle());
 
+		logger.info("User checks that his account link is presented");
 		assertTrue(
 				inboxPage.getHeaderPanel().isAccountLinkPresented(),
 				"Account link for authorized user must be presented!"
 		);
 
+		ScreenshotsMaker.makeScreenshotWithHighlight(inboxPage.getHeaderPanel().getAccountLink());
+
 	}
 
+
 	@Test(dataProvider = "logoutData",
-			dataProviderClass = AuthorizationDataProvider.class)
+			dataProviderClass = AuthorizationDataProvider.class, enabled = false)
 	public void shouldLogout(TestUser user) {
 
 		logger.info("Check logout user");

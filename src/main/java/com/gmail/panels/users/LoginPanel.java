@@ -29,4 +29,8 @@ public class LoginPanel extends BasePanel {
 		nextButton.click();
 	}
 
+	public WebElement getLoginInput() {
+		return loginInput;
+	}
+
 }

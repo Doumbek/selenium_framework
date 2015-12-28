@@ -1,6 +1,8 @@
 package com.gmail.tests;
 
 import com.gmail.utils.DriverManager;
+import com.gmail.utils.ScreenshotsMaker;
+import javafx.stage.Screen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;

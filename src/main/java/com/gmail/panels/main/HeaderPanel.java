@@ -31,4 +31,8 @@ public class HeaderPanel extends BasePanel {
 //		accountLink.click();
 	}
 
+	public WebElement getAccountLink() {
+		return accountLink;
+	}
+
 }

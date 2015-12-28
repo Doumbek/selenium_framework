@@ -32,4 +32,8 @@ public class PasswordPanel extends BasePanel {
 		enterButton.click();
 	}
 
+	public WebElement getPasswordInput() {
+		return passwordInput;
+	}
+
 }
