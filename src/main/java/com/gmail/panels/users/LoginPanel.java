@@ -11,10 +11,10 @@ import org.openqa.selenium.support.FindBy;
  */
 public class LoginPanel extends BasePanel {
 
-	@FindBy(name = "Email")
+	@FindBy(xpath = "//input[@type='email']")
 	private WebElement loginInput;
 
-	@FindBy(id = "next")
+	@FindBy(xpath = "//div[@id='identifierNext']")
 	private WebElement nextButton;
 
 	public LoginPanel() {

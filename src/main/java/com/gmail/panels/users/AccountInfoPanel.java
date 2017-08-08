@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class AccountInfoPanel extends BasePanel {
 
-	@FindBy(xpath = ".//a[text() = 'Выйти']")
+	@FindBy(xpath = ".//a[contains(@href, 'https://accounts.google.com/Logout')]")
 	private WebElement logoutButton;
 
 	public AccountInfoPanel() {

@@ -15,7 +15,7 @@
         <browser>chrome</browser>
         <isMaximizeWindow>true</isMaximizeWindow>
         <isRemote>false</isRemote>
-        <webdriver.chrome.driver>${basedir}/src/main/resources/drivers/chromedriver.exe</webdriver.chrome.driver>
+        <webdriver.chrome.driver>${basedir}/drivers/chromedriver.exe</webdriver.chrome.driver>
         <users.file.path>src/test/resources/data/users/</users.file.path>
         <messages.properties.path>src/test/resources/data/messages/</messages.properties.path>
         <config.properties.path>src/test/resources/test_config/</config.properties.path>
@@ -26,9 +26,12 @@
         <maven.compiler.version>3.3</maven.compiler.version>
         <java.version>1.8</java.version>
         <surefire.version>2.18.1</surefire.version>
+        <failsafe.version>2.18.1</failsafe.version>
         <reportng.version>1.1.4</reportng.version>
         <log4j.version>2.3</log4j.version>
         <guice.version>3.0</guice.version>
+        <chrome.driver.version>2.31</chrome.driver.version>
+        <download.maven.plugin.version>1.2.1</download.maven.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -80,6 +83,14 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
                 <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${failsafe.version}</version>
+                <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>${xmlPath}/${xmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
@@ -91,8 +102,37 @@
                         <messages.properties.path>${messages.properties.path}</messages.properties.path>
                         <config.properties.path>${config.properties.path}</config.properties.path>
                         <log4j.configurationFile>${log4j.configurationFile}</log4j.configurationFile>
-                     </systemPropertyVariables>
+                    </systemPropertyVariables>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <version>${download.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>install-chrome-driver-windows</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>
+                                http://chromedriver.storage.googleapis.com/${chrome.driver.version}/chromedriver_win32.zip
+                            </url>
+                            <unpack>true</unpack>
+                            <outputDirectory>${basedir}/drivers/</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -36,7 +36,6 @@
 
 ### 2.2 src/main/resources/
 
-* drivers - xранит драйвера для запуска браузеров (chromedriver, iedriver)
 * log_config - хранит конфигурации для логирования
 
 ### 2.3 src/test/java/
@@ -57,6 +56,10 @@
 
 Хранит описанные test suites для запуска через TestNG.
 
+### 2.6 drivers
+
+Xранит драйвера для запуска браузеров (chromedriver, iedriver)
+
 ## 3. Конфигурация
 ### 3.1 pom.xml
 
@@ -72,34 +75,34 @@
 
 Из проекта:
 
->mvn clean test
+>mvn clean integration-test
 
 Для использования файла из другой категории, используем параметры * -DxmlPath* и *-DxmlFile*:
 
->mvn clean test -DxmlPath="path/to/dir/with/xml" -DxmlFile=fileName.xml
+>mvn clean integration-test -DxmlPath="path/to/dir/with/xml" -DxmlFile=fileName.xml
 
 Файлы ожидаются в категории *suite*. По-умолчанию запускается *allTest.xml'. 
 
 Для выбора браузера передаем параметр *-Dbrowser*:
 
->mvn clean test -Dbrowser=firefox
+>mvn clean integration-test -Dbrowser=firefox
 
 По-умолчанию запускается *Chrome*. Доступные значения: *"chrome"*, *"firefox"*, *"ie"*, *"html"*. Для расширения списка правим *DriverManager.initDriver()*.
 
 Есть возможность управлять возможность раскрывать окно браузера на весь экран или нет:
 
->mvn clean test -DisMaximizeWindow=false
+>mvn clean integration-test -DisMaximizeWindow=false
 
 По-умолчания установлено *true*.
 
 ## 5. Драйвера для запуска браузеров
 
-Ожидается наличие драйверов в *src/main/resources/drivers/*. Можно при запуске передать ключ, указав путь к драйверу. Например
+Ожидается наличие драйверов в *drivers*. Можно при запуске передать ключ, указав путь к драйверу. Например
  
->mvn clean test -Dwebdriver.chrome.driver="path/to/driver.exe"
+>mvn clean integration-test -Dwebdriver.chrome.driver="path/to/driver.exe"
 
 ## 6. Логирование
 
 По-умолчанию используем *log4j2.xml* файл конфиграции в директории *log_config*. Для использования другого файла, передаем параметр *-Dlog4j.configurationFile*:
 
->mvn clean test -Dlog4j.configurationFile="log_config/otherFile.xml"
+>mvn clean integration-test -Dlog4j.configurationFile="log_config/otherFile.xml"
