@@ -1,21 +1,21 @@
 package com.gmail.pages;
 
-import com.gmail.utils.Config;
-import com.gmail.utils.DriverManager;
 import org.openqa.selenium.WebDriver;
 
-/**
- * Описывает общую базовую страницу
- * Инициализирует driver и общие параметры для тестов(url и т.д)
- */
+import com.gmail.utils.Config;
+import com.gmail.utils.DriverManager;
+
 abstract public class BasePage {
 
-	protected String url = Config.getInstance().getBaseUrl();
+    protected String url = Config.getInstance().getBaseUrl();
+    protected WebDriver driver;
 
-	protected WebDriver driver;
+    public BasePage() {
+        this.driver = DriverManager.getInstance();
+    }
 
-	public BasePage() {
-		this.driver = DriverManager.getInstance();
-	}
+    public String getTitle() {
+        return driver.getTitle();
+    }
 
 }

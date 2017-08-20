@@ -1,36 +1,32 @@
 package com.gmail.panels.users;
 
-import com.gmail.panels.BasePanel;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-/**
- * Описывает панель для ввода login пользователя
- */
+import com.gmail.panels.BasePanel;
+
 public class LoginPanel extends BasePanel {
 
-	@FindBy(xpath = "//input[@type='email']")
-	private WebElement loginInput;
+    @FindBy(xpath = "//input[@type='email']")
+    private WebElement loginInput;
 
-	@FindBy(xpath = "//div[@id='identifierNext']")
-	private WebElement nextButton;
+    @FindBy(xpath = "//div[@id='identifierNext']")
+    private WebElement nextButton;
 
-	public LoginPanel() {
-		super();
-	}
+    public LoginPanel() {
+        super();
+    }
 
-	public void setLogin(String login) {
-		loginInput.sendKeys(login);
-	}
+    public void setLogin(final String login) {
+        loginInput.sendKeys(login);
+    }
 
-	public void clickNextButton() {
-		nextButton.click();
-	}
+    public void clickNextButton() {
+        nextButton.click();
+    }
 
-	public WebElement getLoginInput() {
-		return loginInput;
-	}
+    public WebElement getLoginInput() {
+        return loginInput;
+    }
 
 }
