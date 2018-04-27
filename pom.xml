@@ -9,19 +9,20 @@
     <packaging>jar</packaging>
     <properties>
 
-        <xmlPath>suites</xmlPath>
-        <xmlFile>allTest.xml</xmlFile>
+        <!--<xmlPath>suites</xmlPath>-->
+        <!--<xmlFile>allTest.xml</xmlFile>-->
 
-        <browser>chrome</browser>
-        <isMaximizeWindow>true</isMaximizeWindow>
-        <isRemote>false</isRemote>
-        <webdriver.chrome.driver>${basedir}/drivers/chromedriver.exe</webdriver.chrome.driver>
-        <users.file.path>src/test/resources/data/users/</users.file.path>
-        <messages.properties.path>src/test/resources/data/messages/</messages.properties.path>
-        <config.properties.path>src/test/resources/test_config/</config.properties.path>
-        <log4j.configurationFile>log_config/log4j2.xml</log4j.configurationFile>
+        <!--<browser>chrome</browser>-->
+        <!--<isMaximizeWindow>true</isMaximizeWindow>-->
+        <!--<isRemote>false</isRemote>-->
+        <!--<webdriver.chrome.driver>${basedir}/drivers/chromedriver.exe</webdriver.chrome.driver>-->
+        <!--<webdriver.gecko.driver>${basedir}/drivers/geckodriver.exe</webdriver.gecko.driver>-->
+        <!--<users.file.path>src/test/resources/data/users/</users.file.path>-->
+        <!--<messages.properties.path>src/test/resources/data/messages/</messages.properties.path>-->
+        <!--<config.properties.path>src/test/resources/test_config/</config.properties.path>-->
+        <!--<log4j.configurationFile>log_config/log4j2.xml</log4j.configurationFile>-->
 
-        <selenium.version>2.47.1</selenium.version>
+        <selenium.version>3.11.0</selenium.version>
         <testng.version>6.9.4</testng.version>
         <maven.compiler.version>3.3</maven.compiler.version>
         <java.version>1.8</java.version>
@@ -30,12 +31,24 @@
         <reportng.version>1.1.4</reportng.version>
         <log4j.version>2.3</log4j.version>
         <guice.version>3.0</guice.version>
-        <chrome.driver.version>2.31</chrome.driver.version>
+        <owner.version>1.0.10</owner.version>
+        <chrome.driver.version>2.37</chrome.driver.version>
+        <gecko.driver.version>v0.19.1</gecko.driver.version>
+        <commons-io.version>1.3.2</commons-io.version>
+        <commons-lang3.version>3.7</commons-lang3.version>
+        <commons-collections4.version>4.0</commons-collections4.version>
         <download.maven.plugin.version>1.2.1</download.maven.plugin.version>
+        <groovy.version>2.4.11</groovy.version>
+        <reflections.version>0.9.10</reflections.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -52,6 +65,21 @@
             <version>${selenium.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons-collections4.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>${log4j.version}</version>
@@ -65,6 +93,16 @@
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner-java8</artifactId>
+            <version>${owner.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>${reflections.version}</version>
         </dependency>
     </dependencies>
     <build>
@@ -92,16 +130,11 @@
                 <version>${failsafe.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${xmlPath}/${xmlFile}</suiteXmlFile>
+                        <suiteXmlFile>${suite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
-                        <browser>${browser}</browser>
-                        <isMaximizeWindow>${isMaximizeWindow}}</isMaximizeWindow>
-                        <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-                        <users.file.path>${users.file.path}</users.file.path>
-                        <messages.properties.path>${messages.properties.path}</messages.properties.path>
-                        <config.properties.path>${config.properties.path}</config.properties.path>
-                        <log4j.configurationFile>${log4j.configurationFile}</log4j.configurationFile>
+                        <webdriver.chrome.driver>${basedir}/drivers/chromedriver.exe</webdriver.chrome.driver>
+                        <webdriver.gecko.driver>${basedir}/drivers/geckodriver.exe</webdriver.gecko.driver>
                     </systemPropertyVariables>
                 </configuration>
                 <executions>
@@ -127,6 +160,20 @@
                         <configuration>
                             <url>
                                 http://chromedriver.storage.googleapis.com/${chrome.driver.version}/chromedriver_win32.zip
+                            </url>
+                            <unpack>true</unpack>
+                            <outputDirectory>${basedir}/drivers/</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-gecko-driver-windows</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>
+                                https://github.com/mozilla/geckodriver/releases/download/${gecko.driver.version}/geckodriver-${gecko.driver.version}-win64.zip
                             </url>
                             <unpack>true</unpack>
                             <outputDirectory>${basedir}/drivers/</outputDirectory>

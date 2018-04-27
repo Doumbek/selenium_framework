@@ -77,9 +77,9 @@ Xранит драйвера для запуска браузеров (chromedri
 
 >mvn clean integration-test
 
-Для использования файла из другой категории, используем параметры * -DxmlPath* и *-DxmlFile*:
+Для использования файла из другой категории, используем параметры * -DsuitePath* и *-DsuiteFile*:
 
->mvn clean integration-test -DxmlPath="path/to/dir/with/xml" -DxmlFile=fileName.xml
+>mvn clean integration-test -Dsuite="path/to/suite.xml"
 
 Файлы ожидаются в категории *suite*. По-умолчанию запускается *allTest.xml'. 
 

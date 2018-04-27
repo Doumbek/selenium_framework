@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+    <message subject="Test subject">
+        <to>test.selenium.yakush@gmail.com</to>
+        <body>Test message</body>
+    </message>
+</messages>

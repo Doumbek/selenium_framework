@@ -5,14 +5,14 @@ import static org.testng.Assert.assertTrue;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.gmail.cases.messages.MessageCases;
-import com.gmail.cases.users.UserCases;
+import com.gmail.steps.messages.MessageCases;
+import com.gmail.steps.users.UserCases;
 import com.gmail.pages.main.DraftPage;
 import com.gmail.pages.main.InboxPage;
 import com.gmail.pages.users.LoginPage;
 import com.gmail.providers.messages.MessagesDataProvider;
-import com.gmail.test_objects.messages.TestMessage;
-import com.gmail.test_objects.users.TestUser;
+import com.gmail.dto.messages.TestMessage;
+import com.gmail.dto.users.TestUser;
 import com.gmail.tests.BaseTest;
 
 public class DraftTest extends BaseTest {

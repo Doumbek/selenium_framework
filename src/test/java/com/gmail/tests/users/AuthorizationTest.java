@@ -5,11 +5,11 @@ import static org.testng.Assert.assertTrue;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.gmail.cases.users.UserCases;
+import com.gmail.steps.users.UserCases;
 import com.gmail.pages.main.InboxPage;
 import com.gmail.pages.users.LoginPage;
 import com.gmail.providers.users.AuthorizationDataProvider;
-import com.gmail.test_objects.users.TestUser;
+import com.gmail.dto.users.TestUser;
 import com.gmail.tests.BaseTest;
 
 public class AuthorizationTest extends BaseTest {
