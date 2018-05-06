@@ -32,7 +32,7 @@
         <log4j.version>2.3</log4j.version>
         <guice.version>3.0</guice.version>
         <owner.version>1.0.10</owner.version>
-        <chrome.driver.version>2.37</chrome.driver.version>
+        <chrome.driver.version>2.38</chrome.driver.version>
         <gecko.driver.version>v0.19.1</gecko.driver.version>
         <commons-io.version>1.3.2</commons-io.version>
         <commons-lang3.version>3.7</commons-lang3.version>
